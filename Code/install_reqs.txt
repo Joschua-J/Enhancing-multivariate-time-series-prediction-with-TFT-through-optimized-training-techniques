@@ -1,0 +1,7 @@
+pip install torch==1.12.1+cu113 torchvision==0.13.1+cu113 torchaudio==0.12.1 --extra-index-url https://download.pytorch.org/whl/cu113
+
+pip install pytorch-forecasting==0.10.3
+
+pip install tensorboard holidays jupyter plotly kaleido
+
+sudo vim /opt/conda/envs/tft/lib/python3.9/site-packages/pytorch_forecasting/data/encoders.py --> np.float to np.float64 --> :%s/np\.float/np.float64/g

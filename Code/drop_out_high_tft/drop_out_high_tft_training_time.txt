@@ -1,0 +1,1 @@
+The model training took 17 hours, 26 minutes und 57 seconds.

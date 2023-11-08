@@ -1,0 +1,25 @@
+embeddings {
+  tensor_name: "control_area:131712"
+  metadata_path: "131712/control_area/metadata.tsv"
+  tensor_path: "131712/control_area/tensors.tsv"
+}
+embeddings {
+  tensor_name: "is_weekend:131712"
+  metadata_path: "131712/is_weekend/metadata.tsv"
+  tensor_path: "131712/is_weekend/tensors.tsv"
+}
+embeddings {
+  tensor_name: "is_holiday:131712"
+  metadata_path: "131712/is_holiday/metadata.tsv"
+  tensor_path: "131712/is_holiday/tensors.tsv"
+}
+embeddings {
+  tensor_name: "holiday_name:131712"
+  metadata_path: "131712/holiday_name/metadata.tsv"
+  tensor_path: "131712/holiday_name/tensors.tsv"
+}
+embeddings {
+  tensor_name: "weekday_name:131712"
+  metadata_path: "131712/weekday_name/metadata.tsv"
+  tensor_path: "131712/weekday_name/tensors.tsv"
+}
