@@ -1,9 +1,6 @@
 # %%
 # Imports
-import time
 import random
-import json
-import GPUtil
 import optuna
 import torch
 import shutil
@@ -336,6 +333,8 @@ def metric_formatting(raw_mape, raw_sdmae):
 
 # %%
 # Plotting predictions against test data
+day_mape = []
+day_sdmae = []
 fig, ax = plt.subplots(3, 2, figsize=(15, 15))
 
 # Set test interval
@@ -363,11 +362,15 @@ for i in range(3):
         ax[i][j].set_title(control_area)
         ax[i][j].set_title(f'{control_area} | AVG MAPE: {mape} | AVG SDMAE: {sdmae}', loc="center", pad=10)
         ax[i][j].legend()
+        day_mape.append(mape)
+        day_sdmae.append(sdmae)
 
 plt.savefig(f'{model_name}_day_prediction.svg', format='svg')
 
 # %%
 # Plotting predictions against test data
+week_mape = []
+week_sdmae = []
 fig, ax = plt.subplots(3, 2, figsize=(15, 15))
 
 # Set test interval
@@ -395,11 +398,15 @@ for i in range(3):
         ax[i][j].set_title(control_area)
         ax[i][j].set_title(f'{control_area} | AVG MAPE: {mape} | AVG SDMAE: {sdmae}', loc="center", pad=10)
         ax[i][j].legend()
+        week_mape.append(mape)
+        week_sdmae.append(sdmae)
 
 plt.savefig(f'{model_name}_week_prediction.svg', format='svg')
 
 # %%
 # Plotting predictions against test data
+month_mape = []
+month_sdmae = []
 fig, ax = plt.subplots(3, 2, figsize=(15, 15))
 
 # Set test interval
@@ -427,11 +434,15 @@ for i in range(3):
         ax[i][j].set_title(control_area)
         ax[i][j].set_title(f'{control_area} | AVG MAPE: {mape} | AVG SDMAE: {sdmae}', loc="center", pad=10)
         ax[i][j].legend()
+        month_mape.append(mape)
+        month_sdmae.append(sdmae)
 
 plt.savefig(f'{model_name}_month_prediction.svg', format='svg')
 
 # %%
 # Plotting predictions against test data
+complete_mape = []
+complete_sdmae = []
 fig, ax = plt.subplots(3, 2, figsize=(15, 15))
 
 # Set test interval
@@ -457,7 +468,24 @@ for i in range(3):
         ax[i][j].set_title(control_area)
         ax[i][j].set_title(f'{control_area} | AVG MAPE: {mape} | AVG SDMAE: {sdmae}', loc="center", pad=10)
         ax[i][j].legend()
+        complete_mape.append(mape)
+        complete_sdmae.append(sdmae)
 
 plt.savefig(f'{model_name}_complete_prediction.svg', format='svg')
+
+# %%
+df_mape = pd.DataFrame()
+df_mape['day'] = day_mape
+df_mape['week'] = week_mape
+df_mape['month'] = month_mape
+df_mape['complete'] = complete_mape
+df_mape.to_csv(f'{model_name}_mape.csv', index=False)
+
+df_sdmae = pd.DataFrame()
+df_sdmae['day'] = day_sdmae
+df_sdmae['week'] = week_sdmae
+df_sdmae['month'] = month_sdmae
+df_sdmae['complete'] = complete_sdmae
+df_sdmae.to_csv(f'{model_name}_sdmae.csv', index=False)
 
 
